@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Toaster } from '@/components/ui/toaster';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -20,7 +20,6 @@ const Contact = () => {
     message: ''
   });
 
-  // Pour scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.reveal-on-scroll');
@@ -51,30 +50,47 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulation d'envoi avec un délai
-    setTimeout(() => {
-      console.log('Formulaire soumis:', formData);
+    try {
+      const serviceID = 'default_service';
+      const templateID = 'template_contact';
+      const userID = 'user_yourUserID';
       
-      // Notification avec toast
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'contactmecl24@gmail.com'
+      };
+      
+      await emailjs.send(serviceID, templateID, templateParams, userID);
+      
       toast({
         title: "Message envoyé avec succès",
-        description: "Nous vous répondrons dans les plus brefs délais.",
+        description: "Votre message a été envoyé à contactmecl24@gmail.com",
         variant: "default",
       });
       
-      // Réinitialiser le formulaire
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du message:", error);
+      toast({
+        title: "Échec de l'envoi",
+        description: "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (

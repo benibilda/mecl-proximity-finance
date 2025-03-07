@@ -1,10 +1,10 @@
-
 import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from 'emailjs-com';
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -24,18 +24,31 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simuler un envoi de message avec un délai
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+    try {
+      // Configuration EmailJS
+      const serviceID = 'default_service'; // Remplacer par votre Service ID d'EmailJS
+      const templateID = 'template_contact'; // Remplacer par votre Template ID d'EmailJS
+      const userID = 'user_yourUserID'; // Remplacer par votre User ID d'EmailJS
+      
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        to_email: 'contactmecl24@gmail.com'
+      };
+      
+      // Envoyer l'email
+      await emailjs.send(serviceID, templateID, templateParams, userID);
       
       // Afficher un toast de succès
       toast({
         title: "Message envoyé !",
-        description: "Nous vous contacterons bientôt.",
+        description: "Votre message a été envoyé avec succès à contactmecl24@gmail.com",
         variant: "default",
       });
       
@@ -46,8 +59,16 @@ const ContactSection = () => {
         phone: '',
         message: ''
       });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du message:', error);
+      toast({
+        title: "Échec de l'envoi",
+        description: "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
