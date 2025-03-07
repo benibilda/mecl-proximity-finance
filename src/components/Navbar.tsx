@@ -42,7 +42,9 @@ const Navbar = () => {
             <Link to="/services" className="text-foreground hover:text-mecl-700 transition-colors">Services</Link>
             <Link to="/requirements" className="text-foreground hover:text-mecl-700 transition-colors">Devenir membre</Link>
             <Link to="/contact" className="text-foreground hover:text-mecl-700 transition-colors">Contact</Link>
-            <Button className="bg-mecl-600 hover:bg-mecl-700 text-white">Espace membre</Button>
+            <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white">
+              <Link to="/dashboard">Espace membre</Link>
+            </Button>
           </div>
 
           {/* Mobile navigation button */}
@@ -95,8 +97,8 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <Button className="bg-mecl-600 hover:bg-mecl-700 text-white w-full">
-                Espace membre
+              <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white w-full">
+                <Link to="/dashboard">Espace membre</Link>
               </Button>
             </div>
           </div>
