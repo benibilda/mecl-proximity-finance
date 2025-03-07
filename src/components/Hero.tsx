@@ -1,6 +1,7 @@
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -25,29 +26,33 @@ const Hero = () => {
               Favoriser l'inclusion financière et contribuer à l'amélioration de la qualité de vie par la lutte contre la pauvreté.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-mecl-600 hover:bg-mecl-700 text-white px-6 py-6 rounded-md transition-all duration-300 flex items-center gap-2 text-lg">
-                Devenir membre
-                <ArrowRight size={18} />
+              <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white px-6 py-6 rounded-md transition-all duration-300 flex items-center gap-2 text-lg">
+                <Link to="/requirements">
+                  Devenir membre
+                  <ArrowRight size={18} />
+                </Link>
               </Button>
-              <Button className="bg-white text-mecl-800 hover:bg-mecl-50 border border-mecl-200 px-6 py-6 rounded-md transition-all duration-300 text-lg">
-                Nos services
+              <Button asChild className="bg-white text-mecl-800 hover:bg-mecl-50 border border-mecl-200 px-6 py-6 rounded-md transition-all duration-300 text-lg">
+                <Link to="/services">
+                  Nos services
+                </Link>
               </Button>
             </div>
           </div>
 
           <div className="relative animate-fade-in-right">
             <div className="relative bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
-              {/* Replace with actual image when available */}
-              <div className="aspect-[4/3] bg-mecl-100 rounded-lg overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-mecl-600 flex items-center justify-center">
-                    <span className="text-white font-bold text-3xl">M</span>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-mecl-800/70 backdrop-blur-sm text-white p-4">
-                  <h3 className="font-semibold text-lg">MECL</h3>
-                  <p className="text-sm">Ensemble pour un avenir meilleur</p>
-                </div>
+              {/* Updated image */}
+              <div className="aspect-[4/3] rounded-lg overflow-hidden relative flex justify-center items-center p-4">
+                <img 
+                  src="/lovable-uploads/9dafcac9-f4fa-4507-848a-ef8bb9a99a9e.png" 
+                  alt="MECL Logo" 
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <h3 className="font-semibold text-lg text-mecl-800">MECL</h3>
+                <p className="text-sm text-gray-600">Ensemble pour un avenir meilleur</p>
               </div>
             </div>
             

@@ -26,12 +26,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            {/* Logo placeholder */}
+            {/* Logo updated to use the provided image */}
             <Link to="/" className="flex items-center">
-              <div className="w-10 h-10 rounded-md bg-mecl-600 flex items-center justify-center mr-2">
-                <span className="text-white font-bold">M</span>
-              </div>
-              <span className="font-bold text-xl text-mecl-800">MECL</span>
+              <img 
+                src="/lovable-uploads/9dafcac9-f4fa-4507-848a-ef8bb9a99a9e.png" 
+                alt="MECL Logo" 
+                className="h-12 md:h-14"
+              />
             </Link>
           </div>
 
