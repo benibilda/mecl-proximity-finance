@@ -4,14 +4,17 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,15 +26,28 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to a server
-    alert('Votre message a été envoyé. Nous vous contacterons bientôt.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+    
+    // Simuler un envoi de message avec un délai
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
+      
+      // Afficher un toast de succès
+      toast({
+        title: "Message envoyé !",
+        description: "Nous vous contacterons bientôt.",
+        variant: "default",
+      });
+      
+      // Réinitialiser le formulaire
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
@@ -115,6 +131,7 @@ const ContactSection = () => {
                   placeholder="Votre nom"
                   className="w-full"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -131,6 +148,7 @@ const ContactSection = () => {
                   placeholder="Votre email"
                   className="w-full"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -146,6 +164,7 @@ const ContactSection = () => {
                   placeholder="Votre numéro de téléphone"
                   className="w-full"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -161,11 +180,16 @@ const ContactSection = () => {
                   placeholder="Votre message"
                   className="w-full min-h-[120px]"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
-              <Button type="submit" className="w-full bg-mecl-600 hover:bg-mecl-700 text-white">
-                Envoyer le message
+              <Button 
+                type="submit" 
+                className="w-full bg-mecl-600 hover:bg-mecl-700 text-white"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
               </Button>
             </form>
           </div>

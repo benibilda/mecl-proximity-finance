@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,8 +7,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Toaster } from '@/components/ui/toaster';
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
   // Pour scroll reveal animation
   useEffect(() => {
     const handleScroll = () => {
@@ -32,10 +43,38 @@ const Contact = () => {
     };
   }, []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Cette fonction serait implémentée pour gérer l'envoi du formulaire
-    console.log('Formulaire soumis');
+    setIsSubmitting(true);
+    
+    // Simulation d'envoi avec un délai
+    setTimeout(() => {
+      console.log('Formulaire soumis:', formData);
+      
+      // Notification avec toast
+      toast({
+        title: "Message envoyé avec succès",
+        description: "Nous vous répondrons dans les plus brefs délais.",
+        variant: "default",
+      });
+      
+      // Réinitialiser le formulaire
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
@@ -61,26 +100,60 @@ const Contact = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label htmlFor="name" className="text-sm font-medium text-gray-700">Nom complet</label>
-                          <Input id="name" placeholder="Votre nom" required />
+                          <Input 
+                            id="name" 
+                            placeholder="Votre nom" 
+                            required 
+                            value={formData.name} 
+                            onChange={handleChange}
+                            disabled={isSubmitting}
+                          />
                         </div>
                         <div className="space-y-2">
                           <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
-                          <Input id="email" type="email" placeholder="votre@email.com" required />
+                          <Input 
+                            id="email" 
+                            type="email" 
+                            placeholder="votre@email.com" 
+                            required 
+                            value={formData.email} 
+                            onChange={handleChange}
+                            disabled={isSubmitting}
+                          />
                         </div>
                       </div>
                       
                       <div className="space-y-2">
                         <label htmlFor="subject" className="text-sm font-medium text-gray-700">Sujet</label>
-                        <Input id="subject" placeholder="Objet de votre message" required />
+                        <Input 
+                          id="subject" 
+                          placeholder="Objet de votre message" 
+                          required 
+                          value={formData.subject} 
+                          onChange={handleChange}
+                          disabled={isSubmitting}
+                        />
                       </div>
                       
                       <div className="space-y-2">
                         <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
-                        <Textarea id="message" placeholder="Votre message" rows={5} required />
+                        <Textarea 
+                          id="message" 
+                          placeholder="Votre message" 
+                          rows={5} 
+                          required 
+                          value={formData.message} 
+                          onChange={handleChange}
+                          disabled={isSubmitting}
+                        />
                       </div>
                       
-                      <Button type="submit" className="w-full bg-mecl-600 hover:bg-mecl-700">
-                        Envoyer le message
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-mecl-600 hover:bg-mecl-700"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
                       </Button>
                     </form>
                   </CardContent>
@@ -197,6 +270,7 @@ const Contact = () => {
       </main>
       
       <Footer />
+      <Toaster />
     </div>
   );
 };
