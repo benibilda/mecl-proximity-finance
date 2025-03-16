@@ -37,7 +37,7 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Données des secteurs avec images
+  // Données des secteurs avec images - Mise à jour des correspondances d'images
   const sectorsData: SectorData[] = [
     {
       name: "Agriculture",
@@ -52,22 +52,22 @@ const ServicesSection = () => {
     {
       name: "Artisanat",
       icon: <Briefcase size={24} />,
-      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png"
+      image: "/lovable-uploads/d5c1b6fa-209f-44bd-ab4e-6364abe1db41.png" // Changé: Artisanat utilise l'image précédente d'Immobilier
     },
     {
       name: "Alimentation",
-      icon: <CreditCard size={24} />,
-      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png"
+      icon: <Utensils size={24} />, // Changé l'icône pour Utensils qui est plus approprié
+      image: "/lovable-uploads/dee6e850-14b7-4bb7-9975-d3322afa2065.png" // Changé: Alimentation utilise l'image précédente de Restauration
     },
     {
       name: "Immobilier",
       icon: <Building size={24} />,
-      image: "/lovable-uploads/d5c1b6fa-209f-44bd-ab4e-6364abe1db41.png"
+      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png" // Changé: Immobilier utilise l'image précédente d'Artisanat
     },
     {
       name: "Prestation de service",
       icon: <Briefcase size={24} />,
-      image: "/lovable-uploads/57089be4-ead7-4844-aa34-17e01bcde82a.png"
+      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png" // Changé: Prestation de service utilise l'image précédente d'Alimentation
     },
     {
       name: "Restauration",
