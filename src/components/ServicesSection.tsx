@@ -3,6 +3,13 @@ import { useState, useEffect, useRef } from 'react';
 import { PiggyBank, CreditCard, Lightbulb, Briefcase, Building, Users, Tractor, Utensils } from 'lucide-react';
 import { Button } from './ui/button';
 
+// Interface pour les données des secteurs
+interface SectorData {
+  name: string;
+  icon: React.ReactNode;
+  image: string;
+}
+
 const ServicesSection = () => {
   const [selectedTab, setSelectedTab] = useState('epargne');
   const [isVisible, setIsVisible] = useState(false);
@@ -29,6 +36,30 @@ const ServicesSection = () => {
       }
     };
   }, []);
+
+  // Données des secteurs avec images
+  const sectorsData: SectorData[] = [
+    {
+      name: "Agriculture",
+      icon: <Tractor size={24} />,
+      image: "/lovable-uploads/979ab13b-ffaa-4644-9c37-21a34993b94e.png"
+    },
+    {
+      name: "Commerce & Immobilier",
+      icon: <Building size={24} />,
+      image: "/lovable-uploads/9c139f4f-3ab8-4e82-bd48-c0e21e347e4b.png"
+    },
+    {
+      name: "Restauration & Artisanat",
+      icon: <Utensils size={24} />,
+      image: "/lovable-uploads/dee6e850-14b7-4bb7-9975-d3322afa2065.png"
+    },
+    {
+      name: "Développement communautaire",
+      icon: <Users size={24} />,
+      image: "/lovable-uploads/3760c713-8001-49f0-94c7-265205d18e9d.png"
+    }
+  ];
 
   const renderSavingsProducts = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
@@ -117,45 +148,30 @@ const ServicesSection = () => {
 
   const renderSectors = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-      <div className="glass-panel rounded-xl p-6 card-hover">
-        <div className="w-12 h-12 bg-mecl-100 text-mecl-600 rounded-full flex items-center justify-center mb-4">
-          <Tractor size={24} />
+      {sectorsData.map((sector, index) => (
+        <div key={index} className="overflow-hidden rounded-xl card-hover transition-all duration-300 hover:shadow-lg">
+          <div className="h-48 relative overflow-hidden">
+            <img 
+              src={sector.image} 
+              alt={sector.name} 
+              className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+              <div className="p-4 text-white">
+                <h4 className="text-xl font-semibold">{sector.name}</h4>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 bg-white">
+            <div className="w-12 h-12 bg-mecl-100 text-mecl-600 rounded-full flex items-center justify-center mb-2">
+              {sector.icon}
+            </div>
+            <p className="text-gray-600 text-sm">
+              Financement adapté pour le secteur {sector.name.toLowerCase()}
+            </p>
+          </div>
         </div>
-        <h4 className="text-xl font-semibold mb-2">Agriculture</h4>
-        <p className="text-gray-600">
-          Soutien aux exploitants agricoles, transformateurs, transporteurs et négociants des produits agricoles.
-        </p>
-      </div>
-
-      <div className="glass-panel rounded-xl p-6 card-hover">
-        <div className="w-12 h-12 bg-mecl-100 text-mecl-600 rounded-full flex items-center justify-center mb-4">
-          <Building size={24} />
-        </div>
-        <h4 className="text-xl font-semibold mb-2">Commerce & Immobilier</h4>
-        <p className="text-gray-600">
-          Financement pour les activités commerciales et les projets immobiliers.
-        </p>
-      </div>
-
-      <div className="glass-panel rounded-xl p-6 card-hover">
-        <div className="w-12 h-12 bg-mecl-100 text-mecl-600 rounded-full flex items-center justify-center mb-4">
-          <Utensils size={24} />
-        </div>
-        <h4 className="text-xl font-semibold mb-2">Restauration & Artisanat</h4>
-        <p className="text-gray-600">
-          Soutien aux restaurants, services d'alimentation et activités artisanales.
-        </p>
-      </div>
-
-      <div className="glass-panel rounded-xl p-6 card-hover">
-        <div className="w-12 h-12 bg-mecl-100 text-mecl-600 rounded-full flex items-center justify-center mb-4">
-          <Users size={24} />
-        </div>
-        <h4 className="text-xl font-semibold mb-2">Développement communautaire</h4>
-        <p className="text-gray-600">
-          Financement de projets de développement communautaire et services sociaux.
-        </p>
-      </div>
+      ))}
     </div>
   );
 

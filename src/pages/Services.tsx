@@ -5,6 +5,13 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { CreditCard, PiggyBank, Clock, Calendar, Wallet, BarChart4 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Définition de l'interface pour les données des secteurs
+interface SectorData {
+  name: string;
+  image: string;
+}
 
 const Services = () => {
   // Pour scroll reveal animation
@@ -29,6 +36,42 @@ const Services = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Données des secteurs d'intervention avec les images
+  const sectorsData: SectorData[] = [
+    {
+      name: "Agriculture",
+      image: "/lovable-uploads/979ab13b-ffaa-4644-9c37-21a34993b94e.png"
+    },
+    {
+      name: "Commerce",
+      image: "/lovable-uploads/9c139f4f-3ab8-4e82-bd48-c0e21e347e4b.png"
+    },
+    {
+      name: "Immobilier",
+      image: "/lovable-uploads/d5c1b6fa-209f-44bd-ab4e-6364abe1db41.png"
+    },
+    {
+      name: "Prestation de service",
+      image: "/lovable-uploads/57089be4-ead7-4844-aa34-17e01bcde82a.png"
+    },
+    {
+      name: "Artisanat",
+      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png"
+    },
+    {
+      name: "Restauration",
+      image: "/lovable-uploads/dee6e850-14b7-4bb7-9975-d3322afa2065.png"
+    },
+    {
+      name: "Alimentation",
+      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png"
+    },
+    {
+      name: "Projets communautaires",
+      image: "/lovable-uploads/3760c713-8001-49f0-94c7-265205d18e9d.png"
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -180,19 +223,28 @@ const Services = () => {
               <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
                 La MECL finance diverses activités dans plusieurs secteurs pour soutenir le développement économique local
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  "Agriculture", 
-                  "Commerce", 
-                  "Immobilier", 
-                  "Prestation de service", 
-                  "Artisanat", 
-                  "Restauration", 
-                  "Alimentation", 
-                  "Projets communautaires"
-                ].map((sector, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg shadow-sm text-center">
-                    <span className="font-medium text-mecl-700">{sector}</span>
+              
+              {/* Nouvelle section avec images pour les secteurs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {sectorsData.map((sector, index) => (
+                  <div 
+                    key={index} 
+                    className={cn(
+                      "bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:scale-105",
+                      "reveal-on-scroll",
+                      index > 0 ? `delay-${Math.min(index * 100, 500)}` : ""
+                    )}
+                  >
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={sector.image}
+                        alt={`Secteur ${sector.name}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-4 bg-white">
+                      <h3 className="font-semibold text-mecl-700 text-center">{sector.name}</h3>
+                    </div>
                   </div>
                 ))}
               </div>
