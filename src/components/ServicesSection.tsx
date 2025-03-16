@@ -50,12 +50,32 @@ const ServicesSection = () => {
       image: "/lovable-uploads/9c139f4f-3ab8-4e82-bd48-c0e21e347e4b.png"
     },
     {
-      name: "Restauration & Artisanat",
+      name: "Artisanat",
+      icon: <Briefcase size={24} />,
+      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png"
+    },
+    {
+      name: "Alimentation",
+      icon: <CreditCard size={24} />,
+      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png"
+    },
+    {
+      name: "Immobilier",
+      icon: <Building size={24} />,
+      image: "/lovable-uploads/d5c1b6fa-209f-44bd-ab4e-6364abe1db41.png"
+    },
+    {
+      name: "Prestation de service",
+      icon: <Briefcase size={24} />,
+      image: "/lovable-uploads/57089be4-ead7-4844-aa34-17e01bcde82a.png"
+    },
+    {
+      name: "Restauration",
       icon: <Utensils size={24} />,
       image: "/lovable-uploads/dee6e850-14b7-4bb7-9975-d3322afa2065.png"
     },
     {
-      name: "Développement communautaire",
+      name: "Projets communautaires",
       icon: <Users size={24} />,
       image: "/lovable-uploads/3760c713-8001-49f0-94c7-265205d18e9d.png"
     }

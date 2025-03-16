@@ -48,6 +48,14 @@ const Services = () => {
       image: "/lovable-uploads/9c139f4f-3ab8-4e82-bd48-c0e21e347e4b.png"
     },
     {
+      name: "Artisanat",
+      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png"
+    },
+    {
+      name: "Alimentation",
+      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png"
+    },
+    {
       name: "Immobilier",
       image: "/lovable-uploads/d5c1b6fa-209f-44bd-ab4e-6364abe1db41.png"
     },
@@ -56,16 +64,8 @@ const Services = () => {
       image: "/lovable-uploads/57089be4-ead7-4844-aa34-17e01bcde82a.png"
     },
     {
-      name: "Artisanat",
-      image: "/lovable-uploads/07cc0bcd-110e-40f6-8f92-2ae067e953c3.png"
-    },
-    {
       name: "Restauration",
       image: "/lovable-uploads/dee6e850-14b7-4bb7-9975-d3322afa2065.png"
-    },
-    {
-      name: "Alimentation",
-      image: "/lovable-uploads/2735e185-71b8-4918-84de-ad34923a69c8.png"
     },
     {
       name: "Projets communautaires",
@@ -224,7 +224,6 @@ const Services = () => {
                 La MECL finance diverses activités dans plusieurs secteurs pour soutenir le développement économique local
               </p>
               
-              {/* Nouvelle section avec images pour les secteurs */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {sectorsData.map((sector, index) => (
                   <div 
