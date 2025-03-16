@@ -11,6 +11,8 @@ import Services from "./pages/Services";
 import Requirements from "./pages/Requirements";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
+import SalesPoints from "./pages/SalesPoints";
+import Operation from "./pages/Operation";
 
 const queryClient = new QueryClient();
 
@@ -22,9 +24,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/requirements" element={<Requirements />} />
+          <Route path="/sales-points" element={<SalesPoints />} />
+          <Route path="/operation" element={<Operation />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />

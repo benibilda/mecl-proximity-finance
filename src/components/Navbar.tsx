@@ -39,9 +39,11 @@ const Navbar = () => {
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-foreground hover:text-mecl-700 transition-colors">Accueil</Link>
-            <Link to="/about" className="text-foreground hover:text-mecl-700 transition-colors">À propos</Link>
             <Link to="/services" className="text-foreground hover:text-mecl-700 transition-colors">Services</Link>
             <Link to="/requirements" className="text-foreground hover:text-mecl-700 transition-colors">Devenir membre</Link>
+            <Link to="/sales-points" className="text-foreground hover:text-mecl-700 transition-colors">Nos points de vente</Link>
+            <Link to="/operation" className="text-foreground hover:text-mecl-700 transition-colors">Fonctionnement</Link>
+            <Link to="/about" className="text-foreground hover:text-mecl-700 transition-colors">À propos</Link>
             <Link to="/contact" className="text-foreground hover:text-mecl-700 transition-colors">Contact</Link>
             <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white">
               <Link to="/dashboard">Espace membre</Link>
@@ -71,13 +73,6 @@ const Navbar = () => {
                 Accueil
               </Link>
               <Link 
-                to="/about" 
-                className="text-foreground hover:text-mecl-700 py-2 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                À propos
-              </Link>
-              <Link 
                 to="/services" 
                 className="text-foreground hover:text-mecl-700 py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
@@ -90,6 +85,27 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Devenir membre
+              </Link>
+              <Link 
+                to="/sales-points" 
+                className="text-foreground hover:text-mecl-700 py-2 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Nos points de vente
+              </Link>
+              <Link 
+                to="/operation" 
+                className="text-foreground hover:text-mecl-700 py-2 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Fonctionnement
+              </Link>
+              <Link 
+                to="/about" 
+                className="text-foreground hover:text-mecl-700 py-2 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                À propos
               </Link>
               <Link 
                 to="/contact" 

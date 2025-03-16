@@ -20,10 +20,14 @@ const Hero = () => {
               Votre microfinance de proximité
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-gradient">Mutuel d'épargne et de crédit likelemba</span>
+              <span className="text-gradient">Mutuelle d'épargne et de crédit likelemba</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-700 max-w-lg">
               Favoriser l'inclusion financière et contribuer à l'amélioration de la qualité de vie par la lutte contre la pauvreté.
+            </p>
+            <p className="text-sm text-gray-600 font-medium">
+              Etablissement de microfinance 1ère catégorie<br />
+              Agrement n° 6793/MFB-CAB DU 17/8/2018
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white px-6 py-6 rounded-md transition-all duration-300 flex items-center gap-2 text-lg">
@@ -53,6 +57,7 @@ const Hero = () => {
               <div className="mt-4 text-center">
                 <h3 className="font-semibold text-lg text-mecl-800">MECL</h3>
                 <p className="text-sm text-gray-600">Ensemble pour un avenir meilleur</p>
+                <p className="text-sm text-mecl-600 mt-2 italic">Votre réussite, c'est notre priorité</p>
               </div>
             </div>
             

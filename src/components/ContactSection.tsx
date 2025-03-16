@@ -1,5 +1,5 @@
 
-import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 
 const ContactSection = () => {
   return (
@@ -27,12 +27,12 @@ const ContactSection = () => {
                 </li>
                 <li className="flex items-center p-4 bg-mecl-50 rounded-lg">
                   <Phone className="h-6 w-6 text-mecl-600 mr-4 flex-shrink-0" />
-                  <span className="text-gray-800">(+242) 06 940-43-09 / 06 607 19 04 / 06 686 28 41</span>
+                  <span className="text-gray-800">(+242) 06-940-43-09 / 06-607-19-04 / 06-686-28-41 / 06-598-27-42 / 06-406-07-99</span>
                 </li>
                 <li className="flex items-center p-4 bg-mecl-50 rounded-lg">
                   <Mail className="h-6 w-6 text-mecl-600 mr-4 flex-shrink-0" />
-                  <a href="mailto:contactmecl24@gmail.com" className="text-gray-800 hover:text-mecl-700 transition-colors">
-                    contactmecl24@gmail.com
+                  <a href="mailto:contactmeMECL501@gmail.com" className="text-gray-800 hover:text-mecl-700 transition-colors">
+                    contactmeMECL501@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center p-4 bg-mecl-50 rounded-lg">
@@ -44,6 +44,28 @@ const ContactSection = () => {
                     className="text-gray-800 hover:text-mecl-700 transition-colors"
                   >
                     Facebook
+                  </a>
+                </li>
+                <li className="flex items-center p-4 bg-mecl-50 rounded-lg">
+                  <Instagram className="h-6 w-6 text-mecl-600 mr-4 flex-shrink-0" />
+                  <a 
+                    href="https://www.instagram.com/meclmicrofinance" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-800 hover:text-mecl-700 transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li className="flex items-center p-4 bg-mecl-50 rounded-lg">
+                  <Twitter className="h-6 w-6 text-mecl-600 mr-4 flex-shrink-0" />
+                  <a 
+                    href="https://x.com/la_mecl" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-800 hover:text-mecl-700 transition-colors"
+                  >
+                    Twitter
                   </a>
                 </li>
               </ul>
@@ -58,7 +80,7 @@ const ContactSection = () => {
                 </div>
                 <div className="flex justify-between p-3 bg-mecl-50 rounded-lg">
                   <span className="font-medium">Samedi:</span>
-                  <span>9h00 - 13h00</span>
+                  <span>8h00 - 12h00</span>
                 </div>
                 <div className="flex justify-between p-3 bg-mecl-50 rounded-lg">
                   <span className="font-medium">Dimanche:</span>
