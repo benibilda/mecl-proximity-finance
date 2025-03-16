@@ -1,7 +1,8 @@
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Users, Home, Tractor, Briefcase, Building, BookOpen, ShoppingBag } from 'lucide-react';
+import { Users, Home, Tractor, Briefcase, Building, BookOpen, ShoppingBag, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Operation = () => {
   const clientCategories = [
@@ -49,6 +50,46 @@ const Operation = () => {
     }
   ];
 
+  // Define relationship data
+  const relationships = [
+    {
+      name: "Institutions Éducatives",
+      icon: BookOpen,
+      direction: "bidirectional",
+      description: "MECL offre des crédits et reçoit l'épargne régulière"
+    },
+    {
+      name: "Ménages",
+      icon: Home,
+      direction: "bidirectional",
+      description: "Financement de micro-projets et constitution d'épargne"
+    },
+    {
+      name: "Secteur Agricole",
+      icon: Tractor,
+      direction: "bidirectional",
+      description: "Soutien financier et mobilisation de l'épargne"
+    },
+    {
+      name: "Entrepreneurs",
+      icon: Briefcase,
+      direction: "bidirectional",
+      description: "Financement de projets et accompagnement"
+    },
+    {
+      name: "Commerçants",
+      icon: ShoppingBag,
+      direction: "bidirectional",
+      description: "Crédits pour activités commerciales et épargne"
+    },
+    {
+      name: "Entreprises",
+      icon: Building,
+      direction: "bidirectional",
+      description: "Solutions financières adaptées et épargne"
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -65,6 +106,109 @@ const Operation = () => {
                 une culture d'épargne systématique.
               </p>
               <div className="w-20 h-1 bg-mecl-500 mx-auto mt-6"></div>
+            </div>
+
+            {/* Relationship schema section */}
+            <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 border border-mecl-100 mb-16">
+              <h2 className="text-2xl font-bold text-mecl-800 mb-8 text-center">Relations avec nos Partenaires</h2>
+              
+              <div className="relative">
+                {/* Central MECL node */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                  <div className="w-40 h-40 rounded-full bg-mecl-600 flex items-center justify-center shadow-lg">
+                    <div className="text-white text-center">
+                      <h3 className="font-bold text-xl mb-1">MECL</h3>
+                      <p className="text-xs">Mutuelle d'Épargne et de Crédit Likelemba</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Partner nodes in a circle around MECL */}
+                <div className="relative h-[600px] md:h-[700px]">
+                  {relationships.map((rel, index) => {
+                    // Calculate position in a circle
+                    const angle = (index * (2 * Math.PI / relationships.length));
+                    const radius = 260; // Adjust based on your design
+                    const Icon = rel.icon;
+                    
+                    // Calculate x and y coordinates for positioning
+                    const x = 50 + 45 * Math.sin(angle);
+                    const y = 50 - 32 * Math.cos(angle);
+                    
+                    // Arrow positioning
+                    const startX = 50 + 13 * Math.sin(angle);
+                    const startY = 50 - 13 * Math.cos(angle);
+                    const endX = 50 + 30 * Math.sin(angle);
+                    const endY = 50 - 23 * Math.cos(angle);
+                    
+                    // Text alignment based on position (left or right of the circle)
+                    const textAlign = Math.sin(angle) < 0 ? "text-right" : "text-left";
+                    
+                    return (
+                      <div 
+                        key={index}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                        style={{ 
+                          left: `${x}%`, 
+                          top: `${y}%`,
+                          maxWidth: "240px" 
+                        }}
+                      >
+                        <Card className="bg-white border-mecl-200 hover:shadow-md transition-shadow">
+                          <CardContent className="p-4">
+                            <div className="flex items-center gap-3 mb-2">
+                              <Icon className="text-mecl-600 h-6 w-6" />
+                              <h4 className="font-semibold text-mecl-800">{rel.name}</h4>
+                            </div>
+                            <p className="text-sm text-gray-600">{rel.description}</p>
+                            
+                            {/* Bidirectional indicator */}
+                            <div className="flex justify-center mt-2">
+                              <span className="text-xs text-mecl-700 flex items-center gap-1">
+                                <ArrowLeft size={12} />
+                                Épargne / Crédit
+                                <ArrowRight size={12} />
+                              </span>
+                            </div>
+                          </CardContent>
+                        </Card>
+                        
+                        {/* Draw SVG arrows - we'll use a simplified approach */}
+                        <svg 
+                          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+                          width="100%" 
+                          height="100%" 
+                          viewBox="0 0 100 100" 
+                          style={{
+                            position: "fixed", 
+                            left: 0, 
+                            top: 0, 
+                            pointerEvents: "none",
+                            zIndex: -1
+                          }}
+                        >
+                          <line 
+                            x1={startX} 
+                            y1={startY} 
+                            x2={endX} 
+                            y2={endY} 
+                            stroke="#0f935d" 
+                            strokeWidth="1.5" 
+                            strokeDasharray="4"
+                          />
+                        </svg>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              <div className="text-center mt-8">
+                <p className="text-mecl-700 font-medium">
+                  La MECL entretient des relations bidirectionnelles avec tous ses partenaires, 
+                  offrant des solutions de financement tout en encourageant l'épargne systématique.
+                </p>
+              </div>
             </div>
 
             <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 border border-mecl-100 mb-16">
