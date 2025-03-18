@@ -26,7 +26,7 @@ const Hero = () => {
               Favoriser l'inclusion financière et contribuer à l'amélioration de la qualité de vie par la lutte contre la pauvreté.
             </p>
             
-            {/* Nouveaux chiffres clés */}
+            {/* Chiffres clés mis à jour */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
               <div className="bg-white/80 p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
                 <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">21</div>
@@ -37,7 +37,7 @@ const Hero = () => {
                 <div className="text-gray-700 text-sm">caisses locales</div>
               </div>
               <div className="bg-white/80 p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300" style={{animationDelay: '0.4s'}}>
-                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">36+</div>
+                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">170+</div>
                 <div className="text-gray-700 text-sm">bénévoles</div>
               </div>
             </div>
