@@ -1,25 +1,13 @@
-import { useEffect, useState } from 'react';
+
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Toaster } from '@/components/ui/toaster';
-import emailjs from 'emailjs-com';
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.reveal-on-scroll');
@@ -42,57 +30,6 @@ const Contact = () => {
     };
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const serviceID = 'default_service';
-      const templateID = 'template_contact';
-      const userID = 'user_yourUserID';
-      
-      const templateParams = {
-        from_name: formData.name,
-        reply_to: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'contactmecl24@gmail.com'
-      };
-      
-      await emailjs.send(serviceID, templateID, templateParams, userID);
-      
-      toast({
-        title: "Message envoyé avec succès",
-        description: "Votre message a été envoyé à contactmecl24@gmail.com",
-        variant: "default",
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error("Erreur lors de l'envoi du message:", error);
-      toast({
-        title: "Échec de l'envoi",
-        description: "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -107,161 +44,137 @@ const Contact = () => {
           </div>
           
           <section className="mb-16">
-            <div className="grid md:grid-cols-2 gap-10">
-              <div className="reveal-on-scroll">
-                <Card>
-                  <CardContent className="pt-6">
-                    <h2 className="text-2xl font-bold mb-6 text-mecl-700">Envoyez-nous un message</h2>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label htmlFor="name" className="text-sm font-medium text-gray-700">Nom complet</label>
-                          <Input 
-                            id="name" 
-                            placeholder="Votre nom" 
-                            required 
-                            value={formData.name} 
-                            onChange={handleChange}
-                            disabled={isSubmitting}
-                          />
+            <div className="max-w-4xl mx-auto">
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="grid md:grid-cols-2">
+                    <div className="bg-mecl-600 text-white p-8">
+                      <h2 className="text-2xl font-bold mb-6">Nos Coordonnées</h2>
+                      
+                      <div className="space-y-6">
+                        <div className="flex items-start">
+                          <div className="bg-mecl-500/20 p-3 rounded-full mr-4">
+                            <MapPin className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold">Adresse</h3>
+                            <p className="text-mecl-100">
+                              N° 67 Rue Loudima croisement Boueta-Mbongo<br />
+                              Moungali Q41, arrêt de bus Janne vialle<br />
+                              Brazzaville
+                            </p>
+                          </div>
                         </div>
-                        <div className="space-y-2">
-                          <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
-                          <Input 
-                            id="email" 
-                            type="email" 
-                            placeholder="votre@email.com" 
-                            required 
-                            value={formData.email} 
-                            onChange={handleChange}
-                            disabled={isSubmitting}
-                          />
+                        
+                        <div className="flex items-start">
+                          <div className="bg-mecl-500/20 p-3 rounded-full mr-4">
+                            <Phone className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold">Téléphone</h3>
+                            <p className="text-mecl-100">
+                              (+242) 06 940-43-09<br />
+                              (+242) 06 607-19-04<br />
+                              (+242) 06 686-28-41
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="bg-mecl-500/20 p-3 rounded-full mr-4">
+                            <Mail className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold">Email</h3>
+                            <a 
+                              href="mailto:contactmeMECL501@gmail.com" 
+                              className="text-mecl-100 hover:text-white transition-colors"
+                            >
+                              contactmeMECL501@gmail.com
+                            </a>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-4 mt-8">
+                          <h3 className="font-semibold text-lg">Suivez-nous</h3>
+                          <div className="flex space-x-4">
+                            <a 
+                              href="https://www.facebook.com/profile.php?id=61559962310244" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="bg-mecl-500/20 p-3 rounded-full hover:bg-mecl-500/40 transition-colors"
+                              aria-label="Facebook"
+                            >
+                              <Facebook className="h-5 w-5" />
+                            </a>
+                            <a 
+                              href="https://www.instagram.com/meclmicrofinance" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="bg-mecl-500/20 p-3 rounded-full hover:bg-mecl-500/40 transition-colors"
+                              aria-label="Instagram"
+                            >
+                              <Instagram className="h-5 w-5" />
+                            </a>
+                            <a 
+                              href="https://x.com/la_mecl" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="bg-mecl-500/20 p-3 rounded-full hover:bg-mecl-500/40 transition-colors"
+                              aria-label="Twitter"
+                            >
+                              <Twitter className="h-5 w-5" />
+                            </a>
+                          </div>
                         </div>
                       </div>
-                      
-                      <div className="space-y-2">
-                        <label htmlFor="subject" className="text-sm font-medium text-gray-700">Sujet</label>
-                        <Input 
-                          id="subject" 
-                          placeholder="Objet de votre message" 
-                          required 
-                          value={formData.subject} 
-                          onChange={handleChange}
-                          disabled={isSubmitting}
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
-                        <Textarea 
-                          id="message" 
-                          placeholder="Votre message" 
-                          rows={5} 
-                          required 
-                          value={formData.message} 
-                          onChange={handleChange}
-                          disabled={isSubmitting}
-                        />
-                      </div>
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-mecl-600 hover:bg-mecl-700"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <div className="space-y-8 reveal-on-scroll delay-100">
-                <Card>
-                  <CardContent className="pt-6">
-                    <h2 className="text-2xl font-bold mb-6 text-mecl-700">Nos Coordonnées</h2>
+                    </div>
                     
-                    <div className="space-y-6">
-                      <div className="flex items-start">
-                        <div className="bg-mecl-100 p-3 rounded-full mr-4">
-                          <MapPin className="h-5 w-5 text-mecl-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">Adresse</h3>
-                          <p className="text-gray-600">
-                            N° 67 Rue Loudima croisement Boueta-Mbongo<br />
-                            Moungali Q41, arrêt de bus Janne vialle<br />
-                            Brazzaville
-                          </p>
-                        </div>
-                      </div>
+                    <div className="p-8">
+                      <h2 className="text-2xl font-bold mb-6 text-mecl-800">Visitez-nous</h2>
                       
-                      <div className="flex items-start">
-                        <div className="bg-mecl-100 p-3 rounded-full mr-4">
-                          <Phone className="h-5 w-5 text-mecl-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">Téléphone</h3>
-                          <p className="text-gray-600">
-                            (+242) 06 940-43-09<br />
-                            (+242) 06 607-19-04<br />
-                            (+242) 06 686-28-41
+                      <div className="space-y-6">
+                        <p className="text-gray-600">
+                          Nous vous invitons à vous rendre dans nos locaux pour discuter en personne avec nos conseillers. 
+                          Notre équipe est à votre disposition pour vous accompagner dans vos projets.
+                        </p>
+                        
+                        <Card>
+                          <CardContent className="p-4">
+                            <h3 className="text-xl font-semibold mb-4 text-mecl-700">Horaires d'ouverture</h3>
+                            <div className="space-y-2">
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Lundi - Vendredi</span>
+                                <span className="font-medium">8h00 - 16h00</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Samedi</span>
+                                <span className="font-medium">9h00 - 13h00</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Dimanche</span>
+                                <span className="font-medium">Fermé</span>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                        
+                        <div className="mt-6">
+                          <h3 className="font-semibold text-lg mb-4 text-mecl-800">Points de vente</h3>
+                          <p className="text-gray-600 mb-4">
+                            Découvrez tous nos points de vente pour trouver celui qui est le plus proche de chez vous.
                           </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <div className="bg-mecl-100 p-3 rounded-full mr-4">
-                          <Mail className="h-5 w-5 text-mecl-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">Email</h3>
-                          <p className="text-gray-600">
-                            contactmecl24@gmail.com
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <div className="bg-mecl-100 p-3 rounded-full mr-4">
-                          <Facebook className="h-5 w-5 text-mecl-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">Facebook</h3>
-                          <a 
-                            href="https://www.facebook.com/profile.php?id=61559962310244" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-mecl-600 hover:underline"
-                          >
-                            Page Facebook de la MECL
-                          </a>
+                          <Button asChild>
+                            <Link to="/sales-points">
+                              Voir nos points de vente
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="pt-6">
-                    <h2 className="text-xl font-bold mb-4 text-mecl-700">Horaires d'ouverture</h2>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Lundi - Vendredi</span>
-                        <span className="font-medium">8h00 - 16h00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Samedi</span>
-                        <span className="font-medium">9h00 - 13h00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Dimanche</span>
-                        <span className="font-medium">Fermé</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </section>
           
@@ -286,7 +199,6 @@ const Contact = () => {
       </main>
       
       <Footer />
-      <Toaster />
     </div>
   );
 };

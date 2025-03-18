@@ -1,190 +1,211 @@
 
-import { useState, useEffect, useRef } from 'react';
-import { UserPlus, Building, ShieldCheck, BadgeCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const MembershipSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const [activeTab, setActiveTab] = useState("particuliers");
 
   return (
-    <section 
-      id="membership" 
-      ref={sectionRef}
-      className="py-24 bg-mecl-50"
-    >
+    <section id="membership" className="py-24 bg-mecl-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block text-mecl-600 font-medium mb-3">Rejoignez-nous</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Devenir membre de la MECL</h2>
+          <span className="inline-block text-mecl-600 font-medium mb-3">Espace membres</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Rejoignez notre communauté</h2>
           <p className="text-gray-700">
-            Rejoignez notre coopérative et bénéficiez de services financiers adaptés à vos besoins.
+            La MECL propose des services adaptés aux besoins de chaque type de membre. Découvrez comment vous pouvez bénéficier de nos avantages selon votre profil.
           </p>
           <div className="w-20 h-1 bg-mecl-500 mx-auto mt-6"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className={`${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="glass-panel rounded-2xl p-8 space-y-6">
-              <div className="bg-mecl-50 w-14 h-14 rounded-full flex items-center justify-center">
-                <UserPlus className="h-7 w-7 text-mecl-600" />
+        <div className="max-w-5xl mx-auto">
+          <Tabs defaultValue="particuliers" value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-10">
+              <TabsTrigger value="particuliers" className="text-sm md:text-base py-3">Particuliers</TabsTrigger>
+              <TabsTrigger value="entreprises" className="text-sm md:text-base py-3">Entreprises</TabsTrigger>
+              <TabsTrigger value="associations" className="text-sm md:text-base py-3">Associations</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="particuliers" className="mt-4">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div className="space-y-6 reveal-on-scroll">
+                  <h3 className="text-2xl font-bold text-mecl-800">Pour les particuliers</h3>
+                  <p className="text-gray-700">
+                    Que vous souhaitiez épargner pour un projet, financer vos études ou créer une petite activité, la MECL vous accompagne avec des solutions adaptées à vos besoins.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Épargne sécurisée et rémunérée</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Microcrédits aux conditions avantageuses</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Accompagnement personnalisé</span>
+                    </li>
+                  </ul>
+                  <Button asChild className="mt-4 flex items-center gap-2">
+                    <Link to="/requirements">
+                      Devenir membre
+                      <ArrowRight size={16} />
+                    </Link>
+                  </Button>
+                </div>
+                <div className="reveal-on-scroll delay-100">
+                  <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
+                    <img 
+                      src="/lovable-uploads/1d4bd4c2-de21-49ac-9cf6-70e055ec0656.png" 
+                      alt="Conseiller avec membre" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl font-semibold">Personnes physiques</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
+            </TabsContent>
+            
+            <TabsContent value="entreprises" className="mt-4">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div className="space-y-6 reveal-on-scroll">
+                  <h3 className="text-2xl font-bold text-mecl-800">Pour les entreprises</h3>
+                  <p className="text-gray-700">
+                    La MECL accompagne les entrepreneurs et les entreprises avec des solutions de financement adaptées au développement de vos activités.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Financement d'équipements</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Crédits de trésorerie</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Conseil en gestion d'entreprise</span>
+                    </li>
+                  </ul>
+                  <Button asChild className="mt-4 flex items-center gap-2">
+                    <Link to="/requirements">
+                      Devenir membre
+                      <ArrowRight size={16} />
+                    </Link>
+                  </Button>
+                </div>
+                <div className="reveal-on-scroll delay-100">
+                  <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
+                    <img 
+                      src="/lovable-uploads/ef5a69df-2210-44d9-a1f9-8fe8aace5195.png" 
+                      alt="Conseiller d'entreprise" 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
-                  <span>01 copie CNI ou Passeport valide</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="associations" className="mt-4">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div className="space-y-6 reveal-on-scroll">
+                  <h3 className="text-2xl font-bold text-mecl-800">Pour les associations</h3>
+                  <p className="text-gray-700">
+                    Les associations et groupements communautaires peuvent bénéficier de solutions financières adaptées à leurs activités et leurs projets.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Financement de projets collectifs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Gestion de fonds associatifs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-mecl-100 p-1 rounded-full mr-3 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-mecl-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span>Accompagnement de projets communautaires</span>
+                    </li>
+                  </ul>
+                  <Button asChild className="mt-4 flex items-center gap-2">
+                    <Link to="/requirements">
+                      Devenir membre
+                      <ArrowRight size={16} />
+                    </Link>
+                  </Button>
+                </div>
+                <div className="reveal-on-scroll delay-100">
+                  <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
+                    <img 
+                      src="/lovable-uploads/680b7fac-ab3c-4a61-82a0-700cfb9c13ce.png" 
+                      alt="Réunion avec membre" 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
-                  <span>02 photos format identité en couleur</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Frais d'ouverture de compte : 0 FCFA</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Droit d'adhésion à la MECL : 10.000 FCFA</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Dépôt minimum : illimité</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Frais mensuels de gestion : 0 FCFA</span>
-                </li>
-              </ul>
-              <Button className="w-full bg-mecl-600 hover:bg-mecl-700 text-white">
-                Devenir membre particulier
-              </Button>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+          
+          <div className="mt-16 text-center reveal-on-scroll">
+            <div className="mb-6">
+              <div className="inline-block rounded-lg overflow-hidden shadow-lg">
+                <img 
+                  src="/lovable-uploads/ab68af7a-318f-41fc-a717-7048abbffd42.png" 
+                  alt="Bâtiment MECL" 
+                  className="w-full max-w-2xl h-auto mx-auto"
+                />
+              </div>
             </div>
-          </div>
-
-          <div className={`${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`} style={{animationDelay: '0.2s'}}>
-            <div className="glass-panel rounded-2xl p-8 space-y-6">
-              <div className="bg-mecl-50 w-14 h-14 rounded-full flex items-center justify-center">
-                <Building className="h-7 w-7 text-mecl-600" />
-              </div>
-              <h3 className="text-2xl font-semibold">Personnes morales</h3>
-              <p className="text-sm text-gray-600">(ME, PME, Écoles, ONG, Associations, Fondations, etc.)</p>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>01 copie CNI ou Passeport valide du ou des dirigeant(s)</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Documents légaux (statuts, RI, RCCM, NIU)</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>02 photos en couleur du ou des dirigeant(s)</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Frais d'ouverture : 0 FCFA</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-5 h-5 rounded-full bg-mecl-100 flex items-center justify-center mt-0.5 mr-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-mecl-500"></div>
-                  </div>
-                  <span>Droit d'adhésion à la MECL : 10.000 FCFA</span>
-                </li>
-              </ul>
-              <Button className="w-full bg-mecl-600 hover:bg-mecl-700 text-white">
-                Devenir membre professionnel
+            <h3 className="text-xl font-semibold mb-3 text-mecl-800">Nos établissements sont à votre service</h3>
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              Rendez-vous dans l'une de nos caisses locales pour découvrir tous nos services et bénéficier d'un accompagnement personnalisé par nos conseillers.
+            </p>
+            <div className="mt-6">
+              <Button asChild variant="outline" className="flex items-center gap-2 mx-auto">
+                <Link to="/sales-points">
+                  Nos points de vente
+                  <ArrowRight size={16} />
+                </Link>
               </Button>
-            </div>
-          </div>
-        </div>
-
-        <div className={`mt-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{animationDelay: '0.4s'}}>
-          <div className="glass-panel rounded-2xl p-8">
-            <h3 className="text-2xl font-semibold text-center mb-8">Pourquoi nous choisir</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center space-y-3">
-                <div className="mx-auto bg-mecl-50 w-16 h-16 rounded-full flex items-center justify-center">
-                  <BadgeCheck className="h-8 w-8 text-mecl-600" />
-                </div>
-                <h4 className="font-semibold">Produits variés</h4>
-                <p className="text-sm text-gray-600">
-                  Gammes variées de produits d'épargne et de crédit adaptés à vos besoins
-                </p>
-              </div>
-              
-              <div className="text-center space-y-3">
-                <div className="mx-auto bg-mecl-50 w-16 h-16 rounded-full flex items-center justify-center">
-                  <BadgeCheck className="h-8 w-8 text-mecl-600" />
-                </div>
-                <h4 className="font-semibold">Proximité</h4>
-                <p className="text-sm text-gray-600">
-                  Conditions d'accès souples et traitement rapide de vos demandes
-                </p>
-              </div>
-              
-              <div className="text-center space-y-3">
-                <div className="mx-auto bg-mecl-50 w-16 h-16 rounded-full flex items-center justify-center">
-                  <ShieldCheck className="h-8 w-8 text-mecl-600" />
-                </div>
-                <h4 className="font-semibold">Sécurité</h4>
-                <p className="text-sm text-gray-600">
-                  Sécurité de vos épargnes et rémunération avantageuse
-                </p>
-              </div>
-              
-              <div className="text-center space-y-3">
-                <div className="mx-auto bg-mecl-50 w-16 h-16 rounded-full flex items-center justify-center">
-                  <BadgeCheck className="h-8 w-8 text-mecl-600" />
-                </div>
-                <h4 className="font-semibold">Expertise</h4>
-                <p className="text-sm text-gray-600">
-                  Équipe dynamique et expérimentée à votre service
-                </p>
-              </div>
             </div>
           </div>
         </div>
