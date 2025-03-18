@@ -71,8 +71,8 @@ const MembershipSection = () => {
                 <div className="reveal-on-scroll delay-100">
                   <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
                     <img 
-                      src="/lovable-uploads/1d4bd4c2-de21-49ac-9cf6-70e055ec0656.png" 
-                      alt="Conseiller avec membre" 
+                      src="/lovable-uploads/f3d2000f-3b87-4c04-9dbf-2165da93d3cd.png" 
+                      alt="Service client MECL" 
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -123,8 +123,8 @@ const MembershipSection = () => {
                 <div className="reveal-on-scroll delay-100">
                   <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
                     <img 
-                      src="/lovable-uploads/ef5a69df-2210-44d9-a1f9-8fe8aace5195.png" 
-                      alt="Conseiller d'entreprise" 
+                      src="/lovable-uploads/6d7e72a1-ffbe-4ddf-8fed-b28352853db0.png" 
+                      alt="Gestion professionnelle MECL" 
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -175,8 +175,8 @@ const MembershipSection = () => {
                 <div className="reveal-on-scroll delay-100">
                   <div className="rounded-lg overflow-hidden shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
                     <img 
-                      src="/lovable-uploads/680b7fac-ab3c-4a61-82a0-700cfb9c13ce.png" 
-                      alt="Réunion avec membre" 
+                      src="/lovable-uploads/cf4abede-6a80-49d6-8c1e-d63491fc6448.png" 
+                      alt="Conseil financier MECL" 
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -189,7 +189,7 @@ const MembershipSection = () => {
             <div className="mb-6">
               <div className="inline-block rounded-lg overflow-hidden shadow-lg">
                 <img 
-                  src="/lovable-uploads/ab68af7a-318f-41fc-a717-7048abbffd42.png" 
+                  src="/lovable-uploads/1e885a2f-3294-42fc-8c7c-28b1fb261899.png" 
                   alt="Bâtiment MECL" 
                   className="w-full max-w-2xl h-auto mx-auto"
                 />

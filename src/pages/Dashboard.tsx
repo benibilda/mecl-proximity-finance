@@ -10,23 +10,23 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const Dashboard = () => {
   const [currentImage, setCurrentImage] = useState(0);
   
-  // Demo images for slider
+  // Demo images for slider - updated with new images
   const images = [
     {
-      url: "https://images.unsplash.com/photo-1582213782179-e0d4d3cce33a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: "Coopération et développement"
+      url: "/lovable-uploads/f3d2000f-3b87-4c04-9dbf-2165da93d3cd.png",
+      caption: "Service client et accompagnement"
     },
     {
-      url: "https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: "Épargne et investissement"
+      url: "/lovable-uploads/cf4abede-6a80-49d6-8c1e-d63491fc6448.png",
+      caption: "Conseil financier personnalisé"
     },
     {
-      url: "https://images.unsplash.com/photo-1565373679580-fc0cb538b465?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: "Soutien aux entrepreneurs"
+      url: "/lovable-uploads/6d7e72a1-ffbe-4ddf-8fed-b28352853db0.png",
+      caption: "Gestion professionnelle"
     },
     {
-      url: "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      caption: "Formation et éducation"
+      url: "/lovable-uploads/1e885a2f-3294-42fc-8c7c-28b1fb261899.png",
+      caption: "Établissement MECL"
     }
   ];
   
@@ -92,7 +92,7 @@ const Dashboard = () => {
                   >
                     <img
                       src={image.url}
-                      alt={`Slide ${index + 1}`}
+                      alt={`MECL ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
