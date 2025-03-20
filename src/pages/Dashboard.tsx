@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -27,6 +26,18 @@ const Dashboard = () => {
     {
       url: "/lovable-uploads/1e885a2f-3294-42fc-8c7c-28b1fb261899.png",
       caption: "Établissement MECL"
+    },
+    {
+      url: "/lovable-uploads/6b926d1e-1c09-470a-ace4-8a97b4f3fe3e.png",
+      caption: "Accueil des clients"
+    },
+    {
+      url: "/lovable-uploads/5637d215-08ee-407a-895c-ecb63987636f.png",
+      caption: "Stand MECL au marché"
+    },
+    {
+      url: "/lovable-uploads/fd7c5de6-236a-4382-a801-9dc7ec77a073.png",
+      caption: "Équipe MECL en service"
     }
   ];
   
