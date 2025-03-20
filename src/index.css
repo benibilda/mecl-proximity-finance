@@ -94,6 +94,8 @@
 
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -113,6 +115,10 @@
   .button-hover {
     @apply relative overflow-hidden transition-all duration-300 after:absolute after:inset-0 after:z-[-1] after:bg-mecl-600 after:opacity-0 after:transition-opacity hover:text-white hover:after:opacity-100;
   }
+
+  .mobile-card {
+    @apply rounded-xl overflow-hidden shadow-md bg-white/80 backdrop-blur-sm;
+  }
 }
 
 .reveal-on-scroll {
@@ -124,4 +130,20 @@
 .reveal-on-scroll.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  h1, h2, h3 {
+    letter-spacing: -0.01em;
+  }
+  
+  .reveal-on-scroll {
+    transform: translateY(10px);
+  }
 }
