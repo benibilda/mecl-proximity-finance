@@ -52,6 +52,13 @@ const SalesPoints = () => {
       name: "Caisse Ouenzé",
       location: "Quartier Ouenzé",
       description: "Point de service pour épargne et crédit"
+    },
+    {
+      id: 9,
+      name: "Agence d'Oyo",
+      location: "Quartier Obangui, avenue Marcel Okoyo, République du Congo",
+      description: "Nouvelle agence au service de la communauté d'Oyo",
+      image: "/lovable-uploads/7b57fcdb-0425-45ab-9a74-ff27fbbe4800.png"
     }
   ];
 
@@ -66,7 +73,7 @@ const SalesPoints = () => {
               <span className="inline-block text-mecl-600 font-medium mb-3">Réseau</span>
               <h1 className="text-3xl md:text-4xl font-bold mb-6">Nos Points de Vente</h1>
               <p className="text-gray-700">
-                La MECL est présente dans plusieurs quartiers de Brazzaville pour être au plus proche de ses membres.
+                La MECL est présente dans plusieurs quartiers de Brazzaville et maintenant à Oyo pour être au plus proche de ses membres.
                 Découvrez nos caisses et points de service.
               </p>
               <div className="w-20 h-1 bg-mecl-500 mx-auto mt-6"></div>
@@ -75,6 +82,15 @@ const SalesPoints = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {salesPoints.map((point) => (
                 <div key={point.id} className="glass-panel rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                  {point.image && (
+                    <div className="mb-4 rounded-lg overflow-hidden">
+                      <img 
+                        src={point.image} 
+                        alt={`Agence ${point.name}`}
+                        className="w-full h-48 object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-start mb-4">
                     <MapPin className="text-mecl-600 h-6 w-6 mt-1 mr-3 flex-shrink-0" />
                     <div>
@@ -93,7 +109,8 @@ const SalesPoints = () => {
               <p className="text-gray-700 mb-6">
                 Notre réseau de points de vente vous assure une présence de proximité, avec un accès facile à nos services financiers. 
                 Chaque caisse est conçue pour répondre aux besoins spécifiques de sa communauté locale, que vous soyez commerçant, 
-                entrepreneur, étudiant ou membre d'un ménage.
+                entrepreneur, étudiant ou membre d'un ménage. Avec notre nouvelle agence d'Oyo, nous étendons notre couverture 
+                pour mieux servir nos membres.
               </p>
               <div className="flex items-center justify-center">
                 <span className="text-mecl-600 font-semibold text-lg">MECL, votre partenaire financier sûr!</span>
