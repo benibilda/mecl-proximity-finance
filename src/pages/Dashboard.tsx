@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,7 +11,7 @@ const Dashboard = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const isMobile = useIsMobile();
   
-  // Demo images for slider - updated with new images
+  // Demo images for slider - updated with new images including Oyo branch
   const images = [
     {
       url: "/lovable-uploads/f3d2000f-3b87-4c04-9dbf-2165da93d3cd.png",
@@ -41,6 +40,22 @@ const Dashboard = () => {
     {
       url: "/lovable-uploads/fd7c5de6-236a-4382-a801-9dc7ec77a073.png",
       caption: "Équipe MECL en service"
+    },
+    {
+      url: "/lovable-uploads/d6bd2a5d-4ab4-4a1a-99b8-faef9215fe9e.png",
+      caption: "Inauguration de l'agence MECL Oyo"
+    },
+    {
+      url: "/lovable-uploads/cef3762e-8445-4785-b694-51f6de7a4572.png",
+      caption: "Cérémonie d'ouverture MECL Oyo"
+    },
+    {
+      url: "/lovable-uploads/578300cf-3f01-497e-b78b-8a72de15eaa7.png",
+      caption: "Présentation officielle MECL Oyo"
+    },
+    {
+      url: "/lovable-uploads/7772c8e5-ee35-4a80-b5cc-31fdd5167f89.png",
+      caption: "Façade de l'agence MECL Oyo"
     }
   ];
   
@@ -172,7 +187,7 @@ const Dashboard = () => {
                   <CardContent className="p-6">
                     <h2 className="text-xl font-semibold text-mecl-800 mb-3 text-center">Points de vente</h2>
                     <p className="text-gray-700 mb-4 text-center text-sm">
-                      Découvrez nos points de service à travers Brazzaville pour être au plus proche de nos membres.
+                      Découvrez nos points de service à travers Brazzaville et à Oyo pour être au plus proche de nos membres.
                     </p>
                     <Button asChild className="bg-mecl-600 hover:bg-mecl-700 text-white w-full">
                       <Link to="/sales-points">Voir nos caisses</Link>
