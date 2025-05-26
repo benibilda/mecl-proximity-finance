@@ -2,8 +2,44 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 const Hero = () => {
+  const countAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    const countElements = document.querySelectorAll('.animate-count');
+    
+    const animateCount = (el: Element) => {
+      const target = parseInt(el.getAttribute('data-target') || '0', 10);
+      let count = 0;
+      const duration = 2000; // 2 secondes
+      const frameRate = 1000 / 60; // 60 fps
+      const totalFrames = duration / frameRate;
+      const increment = target / totalFrames;
+      
+      const counter = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+          if (target > 100) {
+            el.textContent = `${target}+`;
+          } else {
+            el.textContent = `${target}`;
+          }
+          clearInterval(counter);
+        } else {
+          el.textContent = `${Math.ceil(count)}`;
+        }
+      }, frameRate);
+    };
+    
+    // Animation une seule fois au chargement
+    if (!countAnimatedRef.current && countElements.length > 0) {
+      countElements.forEach(animateCount);
+      countAnimatedRef.current = true;
+    }
+  }, []);
+
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-white to-secondary">
       {/* Background Elements */}
@@ -26,18 +62,18 @@ const Hero = () => {
               Favoriser l'inclusion financière et contribuer à l'amélioration de la qualité de vie par la lutte contre la pauvreté.
             </p>
             
-            {/* Chiffres clés corrigés */}
+            {/* Chiffres clés avec valeurs fixes */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
               <div className="bg-white/80 p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">20</div>
+                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count" data-target="21">21</div>
                 <div className="text-gray-700 text-sm">années d'expérience</div>
               </div>
               <div className="bg-white/80 p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300" style={{animationDelay: '0.2s'}}>
-                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">11</div>
+                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count" data-target="11">11</div>
                 <div className="text-gray-700 text-sm">caisses locales</div>
               </div>
               <div className="bg-white/80 p-4 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300" style={{animationDelay: '0.4s'}}>
-                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count">200+</div>
+                <div className="text-mecl-600 text-3xl font-bold mb-1 animate-count" data-target="200">200+</div>
                 <div className="text-gray-700 text-sm">bénévoles</div>
               </div>
             </div>
